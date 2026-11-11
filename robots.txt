@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://deema1977.github.io/EgyptRielty/sitemap.xml
