@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Недвижимость в Хургаде: покупка, аренда и полезная информация.">
+  <title>Hurghada Property</title>
+  <style>
+    :root{
+      --blue:#0877c9; --dark:#073b66; --light:#eef8ff; --text:#183247;
+      --white:#fff; --shadow:0 10px 30px rgba(7,59,102,.10); --radius:18px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--text);background:#fff;line-height:1.6}
+    a{color:inherit}
+    .container{width:min(1160px,92%);margin:auto}
+    header{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.96);border-bottom:1px solid #e4f1fa;backdrop-filter:blur(8px)}
+    .nav{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .logo{font-size:23px;font-weight:800;color:var(--dark);text-decoration:none}
+    .logo span{color:var(--blue)}
+    nav{display:flex;gap:22px;align-items:center}
+    nav a{text-decoration:none;font-weight:700;color:var(--dark)}
+    nav a:hover{color:var(--blue)}
+    .lang{display:flex;gap:5px;background:var(--light);padding:5px;border-radius:12px}
+    .lang button{border:0;background:transparent;padding:7px 9px;border-radius:8px;cursor:pointer;font-weight:700;color:var(--dark)}
+    .lang button.active{background:var(--blue);color:#fff}
+    .hero{background:linear-gradient(135deg,#eef9ff 0%,#fff 65%);padding:78px 0 70px}
+    .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:50px;align-items:center}
+    .eyebrow{color:var(--blue);font-weight:800;text-transform:uppercase;letter-spacing:1.5px}
+    h1{font-size:clamp(40px,6vw,68px);line-height:1.05;margin:12px 0 22px;color:var(--dark)}
+    .hero p{font-size:20px;max-width:650px;color:#4d6577}
+    .buttons{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+    .btn{display:inline-block;padding:13px 20px;border-radius:12px;text-decoration:none;font-weight:800;border:2px solid var(--blue)}
+    .btn.primary{background:var(--blue);color:#fff}
+    .btn.secondary{color:var(--blue);background:#fff}
+    .hero-image,.section-image{width:100%;height:100%;object-fit:cover;border-radius:24px;box-shadow:var(--shadow)}
+    .hero-image{min-height:360px;background:var(--light)}
+    section{padding:78px 0}
+    section:nth-of-type(even){background:#f8fcff}
+    .section-head{text-align:center;max-width:780px;margin:0 auto 38px}
+    .section-head h2{font-size:40px;line-height:1.15;color:var(--dark);margin:0 0 12px}
+    .section-head p{margin:0;color:#5b7080}
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:center}
+    .section-image{height:340px;background:var(--light)}
+    .card{background:#fff;border-radius:var(--radius);padding:28px;box-shadow:var(--shadow)}
+    .card h3{margin-top:0;color:var(--dark);font-size:25px}
+    .telegram{margin-top:22px;padding:16px 18px;border-radius:14px;background:var(--light);color:var(--dark)}
+    .telegram a{color:var(--blue);font-weight:800;text-decoration:none}
+    .articles{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+    .article{
+      overflow:hidden;background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);
+      transition:transform .2s ease, box-shadow .2s ease;
+    }
+    .article:hover{
+      transform:translateY(-4px);
+      box-shadow:0 16px 36px rgba(7,59,102,.16);
+    }
+    .article-link{display:block;height:100%;color:inherit;text-decoration:none}
+    .article-link:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+    .article img{display:block;width:100%;height:190px;object-fit:cover;background:var(--light)}
+    .article-content{padding:22px}
+    .article h3{margin:0 0 8px;color:var(--dark)}
+    .article p{margin:0;color:#637888}
+    footer{background:var(--dark);color:#fff;padding:48px 0}
+    .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:35px}
+    footer h3{margin-top:0}
+    footer a{color:#fff;text-decoration:none}
+    .qr{width:140px;height:140px;object-fit:contain;background:#fff;padding:8px;border-radius:10px}
+    .copyright{margin-top:35px;padding-top:20px;border-top:1px solid rgba(255,255,255,.18);font-size:14px;opacity:.8}
+    .cta-wrap{padding:0 0 78px}
+    .cta-band{
+      display:flex;align-items:center;justify-content:space-between;gap:24px;
+      background:linear-gradient(135deg,var(--dark),var(--blue));
+      color:#fff;border-radius:24px;padding:32px 36px;box-shadow:var(--shadow);
+    }
+    .cta-band h2{margin:0 0 8px;font-size:30px;line-height:1.15;color:#fff}
+    .cta-band p{margin:0;color:#e7f4ff;max-width:760px}
+    .cta-band .btn{background:#fff;color:var(--blue);border-color:#fff;white-space:nowrap}
+    .cta-band .btn:hover{background:var(--light)}
+    @media(max-width:850px){
+      .hero-grid,.two-col,.footer-grid{grid-template-columns:1fr}
+      nav{display:none}
+      .articles{grid-template-columns:1fr 1fr}
+      .cta-band{flex-direction:column;align-items:flex-start;padding:28px}
+    }
+    @media(max-width:560px){
+      .articles{grid-template-columns:1fr}
+      .hero{padding-top:55px}
+      section{padding:58px 0}
+      .section-head h2{font-size:32px}
+      .cta-band h2{font-size:26px}
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <a class="logo" href="#">Hurghada <span>Property</span></a>
+    <nav>
+      <a href="#buy" data-i18n="navBuy">Покупка</a>
+      <a href="#rent" data-i18n="navRent">Аренда</a>
+      <a href="#info" data-i18n="navInfo">Полезная информация</a>
+    </nav>
+    <div class="lang" aria-label="Language selector">
+      <button data-lang="ru" class="active">RU</button>
+      <button data-lang="en">EN</button>
+      <button data-lang="sr">SR</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="eyebrow" data-i18n="eyebrow">Недвижимость в Египте</div>
+        <h1 data-i18n="heroTitle">Хургада — недвижимость у Красного моря</h1>
+        <p data-i18n="heroText">Покупка и аренда недвижимости, полезные материалы и информация для тех, кто хочет жить, отдыхать или инвестировать в Хургаде.</p>
+        <div class="buttons">
+          <a class="btn primary" href="#buy" data-i18n="heroBuy">Смотреть покупку</a>
+          <a class="btn secondary" href="#rent" data-i18n="heroRent">Смотреть аренду</a>
+        </div>
+      </div>
+      <img class="hero-image" src="images/hero.png" alt="Hurghada">
+    </div>
+  </section>
+
+  <div class="container cta-wrap">
+    <div class="cta-band">
+      <div>
+        <h2 data-i18n="ctaTitle">Нужна квартира в Хургаде?</h2>
+        <p data-i18n="ctaText">Если вам нужна аренда квартиры в Хургаде или подходящий вариант для покупки, напишите нам на почту.</p>
+      </div>
+      <a class="btn primary" href="mailto:egypt26@proton.me">egypt26@proton.me</a>
+    </div>
+  </div>
+
+  <section id="buy">
+    <div class="container">
+      <div class="section-head">
+        <h2 data-i18n="buyTitle">Покупка недвижимости</h2>
+        <p data-i18n="buyIntro">Квартиры, апартаменты и другие объекты недвижимости в Хургаде и окрестностях.</p>
+      </div>
+      <div class="two-col">
+        <img class="section-image" src="images/buy.png" alt="Недвижимость для покупки">
+        <div class="card">
+          <h3 data-i18n="buyCardTitle">Выбирайте недвижимость в Хургаде</h3>
+          <p data-i18n="buyText">Здесь можно разместить каталог объектов, предложения от собственников и агентств, информацию о районах, ценах и условиях покупки.</p>
+          <div class="telegram"><span data-i18n="telegramText">Больше предложений и обсуждений:</span> <a href="https://t.me/hurgada_realestate" target="_blank" rel="noopener">Telegram @hurgada</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="rent">
+    <div class="container">
+      <div class="section-head">
+        <h2 data-i18n="rentTitle">Аренда</h2>
+        <p data-i18n="rentIntro">Краткосрочная и долгосрочная аренда квартир и апартаментов в Хургаде.</p>
+      </div>
+      <div class="two-col">
+        <div class="card">
+          <h3 data-i18n="rentCardTitle">Найдите жильё для отдыха или жизни</h3>
+          <p data-i18n="rentText">В этом разделе можно публиковать варианты посуточной, помесячной и долгосрочной аренды, а также полезные советы для арендаторов.</p>
+          <div class="telegram"><span data-i18n="telegramText">Больше предложений и обсуждений:</span> <a href="https://t.me/hurgada_realestate" target="_blank" rel="noopener">Telegram</a></div>
+        </div>
+        <img class="section-image" src="images/rent.png" alt="Аренда недвижимости">
+      </div>
+    </div>
+  </section>
+
+  <section id="info">
+    <div class="container">
+      <div class="section-head">
+        <h2 data-i18n="infoTitle">Полезная информация</h2>
+        <p data-i18n="infoIntro">Пять готовых мест для статей о жизни, недвижимости и переезде в Хургаду.</p>
+      </div>
+      <div class="articles">
+        <article class="article">
+          <a class="article-link" data-article="1" href="articles/Ru/article1.html">
+            <img src="images/article-1.jpg" alt="Египет, каким его себе представляют, и Египет, в котором теперь живут">
+            <div class="article-content"><h3 data-i18n="a1t">Египет, каким его себе представляют, и Египет, в котором теперь живут</h3><p data-i18n="a1p">Есть стойкий стереотип: Египет — это «дикая» страна, где люди живут в коробках, кругом грязь и криминал. Именно поэтому многие либо не рассматривают его для отдыха, либо, приехав, не выходят за забор отеля. Но реальность, особенно в Хургаде, изменилась радикально. Сегодня это город с инфраструктурой, которая делает комфортной не только короткий отпуск, но и полноценную жизнь.</p></div>
+          </a>
+        </article>
+        <article class="article">
+          <a class="article-link" data-article="2" href="articles/Ru/article2.html">
+            <img src="images/article-2.jpg" alt="Интернет в Хургаде">
+            <div class="article-content"><h3 data-i18n="a2t">Полный гид по интернету в Хургаде: мобильная связь, провайдеры и проводной интернет</h3><p data-i18n="a2p">Хургада — популярный курорт на Красном море, где качественная связь и стабильный интернет важны как для удалённой работы и отдыха, так и для комфортной жизни. В этой статье мы подробно разберём, каких мобильных операторов выбрать, где купить сим-карту, как обстоят дела с проводным интернетом и какие важные нюансы нужно учесть при аренде или покупке недвижимости.</p></div>
+          </a>
+        </article>
+        <article class="article">
+          <a class="article-link" data-article="3" href="articles/Ru/article3.html">
+            <img src="images/article-3.jpg" alt="Подробный гид по районам Хургады: от цен на жильё и пляжей до чистоты и безопасности">
+            <div class="article-content"><h3 data-i18n="a3t">Подробный гид по районам Хургады: от цен на жильё и пляжей до чистоты и безопасности</h3><p data-i18n="a3p">Хургада давно переросла статус простого египетского курорта, превратившись в разношерстный мегаполис на побережье Красного моря. Здесь уживаются традиционный египетский уклад, шумные туристические проспекты, уютные европейские анклавы и роскошные закрытые резорты.</p></div>
+          </a>
+        </article>
+        <article class="article">
+          <a class="article-link" data-article="4" href="articles/Ru/article4.html">
+            <img src="images/article-4.jpg" alt="All-Inclusive Hotel vs. Owning/Renting Your Own Apartment in Hurghada: Freedom, Economy, and a Different Quality of Life">
+            <div class="article-content"><h3 data-i18n="a4t">Отель «всё включено» или собственное жильё в Хургаде: свобода, экономика и реальная жизнь на Красном море</h3><p data-i18n="a4p">Пакетный тур в Египет по системе «all inclusive» long-time остается самым привычным способом отдыха. Но с каждым годом всё больше людей задаются вопросом: стоит ли из года в год переплачивать за стандартный отельный сервис, когда можно снять квартиру в Хургаде на сезон или вовсе купить квартиру в Хургаде для постоянных поездок и инвестиций?</p></div>
+          </a>
+        </article>
+        <article class="article">
+          <a class="article-link" data-article="5" href="articles/Ru/article5.html">
+            <img src="images/article-5.jpg" alt="Как не нарваться на мошенников при покупке и аренде недвижимости в Хургаде: полная юридическая инструкция">
+            <div class="article-content"><h3 data-i18n="a5t">Как не нарваться на мошенников при покупке и аренде недвижимости в Хургаде: полная юридическая инструкция</h3><p data-i18n="a5p">Покупка или долгосрочная аренда квартиры на побережье Красного моря — прекрасная инвестиция, но египетский рынок недвижимости имеет специфическое законодательство и множество подводных камней. Ошибки при оформлении документов могут стоить потери денег или имущества.</p></div>
+          </a>
+        </article>
+        <article class="article">
+          <a class="article-link" data-article="6" href="articles/Ru/article6.html">
+            <img src="images/article-6.jpg" alt="Living in Hurghada Outside Hotels: Essential Guide to Daily Life, Transport, and Healthcare — Hurghada Property">
+            <div class="article-content"><h3 data-i18n="a6t">Жизнь в Хургаде вне отеля: полный гид по быту, транспорту и медицине</h3><p data-i18n="a6p">Жизнь самостоятельного резидента или долгосрочного арендатора в Хургаде принципиально отличается от стандартного отдыха по системе «все включено». Покидая закрытую территорию отеля, вы открываете для себя комфортный, экономный и удобный прибрежный мегаполис</p></div>
+          </a>
+        </article>
+      </div>
+      <div class="telegram" style="margin-top:28px;text-align:center"><span data-i18n="telegramText">Больше предложений и обсуждений:</span> <a href="https://t.me/hurgada_realestate" target="_blank" rel="noopener">Telegram</a></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h3>Hurghada Property</h3>
+        <p data-i18n="footerText">Недвижимость в Хургаде: покупка, аренда и полезная информация.</p>
+      </div>
+      <div>
+        <h3 data-i18n="contacts">Контакты</h3>
+        <p><a href="mailto:egypt26@proton.me">egypt26@proton.me</a></p>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Hurghada Property</div>
+  </div>
+</footer>
+
+<script>
+const translations = {
+  ru:{
+    navBuy:"Покупка",navRent:"Аренда",navInfo:"Полезная информация",
+    eyebrow:"Недвижимость в Египте",heroTitle:"Хургада — недвижимость у Красного моря",
+    heroText:"Покупка и аренда недвижимости, полезные материалы и информация для тех, кто хочет жить, отдыхать или инвестировать в Хургаде.",
+    heroBuy:"Смотреть покупку",heroRent:"Смотреть аренду",
+    ctaTitle:"Нужна квартира в Хургаде?",
+    ctaText:"Если вам нужна аренда квартиры в Хургаде или подходящий вариант для покупки, напишите нам на почту.",
+    buyTitle:"Покупка недвижимости",buyIntro:"Квартиры, апартаменты и другие объекты недвижимости в Хургаде и окрестностях.",
+    buyCardTitle:"Выбирайте недвижимость в Хургаде",buyText:"Здесь можно разместить каталог объектов, предложения от собственников и агентств, информацию о районах, ценах и условиях покупки.",
+    rentTitle:"Аренда",rentIntro:"Краткосрочная и долгосрочная аренда квартир и апартаментов в Хургаде.",
+    rentCardTitle:"Найдите жильё для отдыха или жизни",rentText:"В этом разделе можно публиковать варианты посуточной, помесячной и долгосрочной аренды, а также полезные советы для арендаторов.",
+    infoTitle:"Полезная информация",infoIntro:"Пять готовых мест для статей о жизни, недвижимости и переезде в Хургаду.",
+    telegramText:"Больше предложений и обсуждений:",footerText:"Недвижимость в Хургаде: покупка, аренда и полезная информация.",
+    contacts:"Контакты",viber:"Viber",
+    a1t:"Египет, каким его себе представляют, и Египет, в котором теперь живут",
+    a1p:"Есть стойкий стереотип: Египет — это «дикая» страна, где люди живут в коробках, кругом грязь и криминал. Именно поэтому многие либо не рассматривают его для отдыха, либо, приехав, не выходят за забор отеля. Но реальность, особенно в Хургаде, изменилась радикально. Сегодня это город с инфраструктурой, которая делает комфортной не только короткий отпуск, но и полноценную жизнь.",
+    a2t:"Полный гид по интернету в Хургаде: мобильная связь, провайдеры и проводной интернет",a2p:"Хургада — популярный курорт на Красном море, где качественная связь и стабильный интернет важны как для удалённой работы и отдыха, так и для комфортной жизни. В этой статье мы подробно разберём, каких мобильных операторов выбрать, где купить сим-карту, как обстоят дела с проводным интернетом и какие важные нюансы нужно учесть при аренде или покупке недвижимости.",
+    a3t:"Подробный гид по районам Хургады: от цен на жильё и пляжей до чистоты и безопасности",a3p:"Хургада давно переросла статус простого египетского курорта, превратившись в разношерстный мегаполис на побережье Красного моря. Здесь уживаются традиционный египетский уклад, шумные туристические проспекты, уютные европейские анклавы и роскошные закрытые резорты.",
+    a4t:"Отель «всё включено» или собственное жильё в Хургаде: свобода, экономика и реальная жизнь на Красном море",a4p:"Пакетный тур в Египет по системе «all inclusive» long-time остается самым привычным способом отдыха. Но с каждым годом всё больше людей задаются вопросом: стоит ли из года в год переплачивать за стандартный отельный сервис, когда можно снять квартиру в Хургаде на сезон или вовсе купить квартиру в Хургаде для постоянных поездок и инвестиций?",
+    a5t:"Как не нарваться на мошенников при покупке и аренде недвижимости в Хургаде: полная юридическая инструкция",a5p:"Покупка или долгосрочная аренда квартиры на побережье Красного моря — прекрасная инвестиция, но египетский рынок недвижимости имеет специфическое законодательство и множество подводных камней. Ошибки при оформлении документов могут стоить потери денег или имущества.",
+    a6t:"Что важно знать для жизни в Хургаде вне отеля: полный гид по быту, транспорту и медицине",a6p:"Жизнь самостоятельного резидента или долгосрочного арендатора в Хургаде принципиально отличается от стандартного отдыха по системе «все включено». Покидая закрытую территорию отеля, вы открываете для себя комфортный, экономный и удобный прибрежный мегаполис."
+  },
+  en:{
+    navBuy:"Buy",navRent:"Rent",navInfo:"Useful Information",
+    eyebrow:"Property in Egypt",heroTitle:"Hurghada — Property by the Red Sea",
+    heroText:"Property for sale and rent, useful guides and information for those who want to live, holiday or invest in Hurghada.",
+    heroBuy:"View properties for sale",heroRent:"View rentals",
+    ctaTitle:"Need an apartment in Hurghada?",
+    ctaText:"If you need to rent an apartment in Hurghada or are looking for a property to buy, email us.",
+    buyTitle:"Property for Sale",buyIntro:"Apartments, flats and other properties in Hurghada and nearby areas.",
+    buyCardTitle:"Find property in Hurghada",buyText:"Use this section for property listings, owner and agency offers, area guides, prices and purchase conditions.",
+    rentTitle:"Rent",rentIntro:"Short-term and long-term apartments and homes for rent in Hurghada.",
+    rentCardTitle:"Find a place to stay",rentText:"Use this section for daily, monthly and long-term rental offers, plus useful tips for tenants.",
+    infoTitle:"Useful Information",infoIntro:"Five ready-made article spaces about living, property and moving to Hurghada.",
+    telegramText:"More listings and discussions:",footerText:"Hurghada property: buying, renting and useful information.",
+    contacts:"Contacts",viber:"Viber",
+    a1t:"Egypt as people imagine it — and the Egypt people now live in",
+    a1p:"There is a persistent stereotype: Egypt is a “wild” country where people live in boxes, with dirt and crime everywhere. That is why many either never consider it for a holiday, or, once they arrive, never leave the hotel grounds. But the reality — especially in Hurghada — has changed dramatically. Today it is a city with infrastructure that makes not only a short holiday comfortable, but a full life as well.",
+    a2t:"Complete Guide to the Internet in Hurghada: Mobile Networks, Providers, and Broadband",a2p:"Hurghada is a popular Red Sea resort where reliable internet and good connectivity are essential for remote work, leisure, and daily life. In this article, we will detail how to choose a mobile operator, where to buy a SIM card, how home broadband works, and key nuances to keep in mind when renting or buying real estate.",
+    a3t:"Complete Guide to Hurghada Neighborhoods: El Kawsar, Hadaba, Dahar, Madares, Sheraton, Sahl Hasheesh, El Gouna, and El Ahyaa",a3p:"Hurghada has long grown beyond a simple Egyptian resort town, evolving into a diverse coastal metropolis on the Red Sea. Traditional Egyptian lifestyle, bustling tourist avenues, cozy European enclaves, and luxurious gated resorts all coexist here.",
+    a4t:"All-Inclusive Hotel vs. Owning/Renting Your Own Apartment in Hurghada: Freedom, Economy, and a Different Quality of Life",a4p:"A package tour to Hurghada on an \"all-inclusive\" basis has been the most familiar way to vacation on the Red Sea for decades. However, an increasing number of travelers and freelancers are choosing an alternative path — long-term rental or purchasing their own apartment in Egypt.",
+    a5t:"How to Avoid Real Estate Scams in Hurghada: Complete Legal Guide",a5p:"Buying or renting an apartment on the Red Sea coast is a fantastic opportunity, but the Egyptian real estate market has unique legal frameworks and pitfalls. Mistakes during paperwork can lead to lost money or property.",
+    a6t:"Living in Hurghada Outside Hotels: Essential Guide to Daily Life, Transport, and Healthcare",a6p:"Living as an independent resident or long-term renter in Hurghada is fundamentally different from a standard all-inclusive hotel stay. Stepping outside resort walls unlocks a comfortable, budget-friendly coastal lifestyle"
+  },
+  sr:{
+    navBuy:"Kupovina",navRent:"Izdavanje",navInfo:"Korisne informacije",
+    eyebrow:"Nekretnine u Egiptu",heroTitle:"Hurgada — nekretnine uz Crveno more",
+    heroText:"Kupovina i izdavanje nekretnina, korisni tekstovi i informacije za one koji žele da žive, odmaraju ili ulažu u Hurgadi.",
+    heroBuy:"Pogledajte nekretnine",heroRent:"Pogledajte ponudu za izdavanje",
+    ctaTitle:"Potreban vam je stan u Hurgadi?",
+    ctaText:"Ako vam je potrebno izdavanje stana u Hurgadi ili tražite nekretninu za kupovinu, pišite nam na imejl.",
+    buyTitle:"Kupovina nekretnina",buyIntro:"Stanovi, apartmani i druge nekretnine u Hurgadi i okolini.",
+    buyCardTitle:"Pronađite nekretninu u Hurgadi",buyText:"Ovde možete objavljivati ponude vlasnika i agencija, informacije o naseljima, cenama i uslovima kupovine.",
+    rentTitle:"Izdavanje",rentIntro:"Kratkoročno i dugoročno izdavanje stanova i apartmana u Hurgadi.",
+    rentCardTitle:"Pronađite smeštaj za odmor ili život",rentText:"Ovde možete objavljivati dnevne, mesečne i dugoročne ponude, kao i korisne savete za zakupce.",
+    infoTitle:"Korisne informacije",infoIntro:"Pet gotovih mesta za članke o životu, nekretninama i preseljenju u Hurgadu.",
+    telegramText:"Više ponuda i diskusija:",footerText:"Nekretninama u Hurgadi: kupovina, izdavanje i korisne informacije.",
+    contacts:"Kontakt",viber:"Viber",
+    a1t:"Egipat kakav zamišljaju i Egipat u kojem sada žive",
+    a1p:"Postoji tvrdokorni stereotip: Egipat je „divlja“ zemlja u kojoj ljudi žive u kutijama, svuda je prljavština i kriminal. Zbog toga mnogi ili ne razmatraju Egipat za odmor, ili, kada dođu, ne izlaze iza ograde hotela. Ali stvarnost, posebno u Hurgadi, radikalno se promenila. Danas je to grad sa infrastrukturom koja čini udobnim ne samo kratak odmor, već i pun život.",
+    a2t:"Комплетан водич кроз интернет у Хургади: мобилна мрежа, провајдери и кабловски интернет",a2p:"Хургада је популарно летовалиште на Црвеном мору где су квалитетна веза и стабилан интернет од кључног значаја за рад на даљину, одмор и свакодневни живот. У овом чланку подробно објашњавамо како да изаберете мобилног оператера, где да купите СИМ картицу, каква је ситуација са кабловским интернетом и које важне детаље треба узети у обзир приликом изнајмљивања или куповине некретнине.",
+    a3t:"Egipat kakvim ga zamišljaju i Egipat u kojem sada žive",a3p:"Postoji tvrdokorni stereotip: Egipat je „divlja“ zemlja u kojoj ljudi žive u kutijama, svuda je prljavština i kriminal. Zato ga mnogi ili ne razmatraju za odmor, ili, kada dođu, ne izlaze iza ograde hotela. Ali stvarnost, naročito u Hurgadi, radikalno se promenila. Danas je to grad sa infrastrukturom koja čini komfornim ne samo kratak odmor nego i pun život.",
+    a4t:"All-inclusive hotel naspram posedovanja/iznajmljivanja sopstvenog apartmana u Hurgadi: sloboda, ekonomija i drugačiji kvalitet života",a4p:"Paket aranžman za Egipat po sistemu „all inclusive“ decenijama je ostao najpoznatiji način odmora na Crvenom moru. Međutim, sve više putnika i frilensera bira alternativni put — dugoročni najam ili kupovinu sopstvenog apartmana u Egiptu.",
+    a5t:"Kako izbeći prevare pri kupovini i najmu nekretnina u Hurgadi: Kompletan pravni vodič",a5p:"Kupovina ili dugoročni najam stana na obali Crvenog mora je odlična prilika, ali egipatsko tržište nekretnina ima specifične pravne okvire i zamke. Greške pri dokumentaciji mogu dovesti do gubitka novca ili imovine.",
+    a6t:"Egipat kakvim ga zamišljaju i Egipat u kojem sada žive",a6p:"Postoji tvrdokorni stereotip: Egipat je „divlja“ zemlja u kojoj ljudi žive u kutijama, svuda je prljavština i kriminal. Zato ga mnogi ili ne razmatraju za odmor, ili, kada dođu, ne izlaze iza ograde hotela. Ali stvarnost, naročito u Hurgadi, radikalno se promenila. Danas je to grad sa infrastrukturom koja čini komfornim ne samo kratak odmor nego i pun život."
+  }
+};
+
+const articleFolders = {
+  ru: "articles/Ru/",
+  en: "articles/Eng/",
+  sr: "articles/Sr/"
+};
+
+function updateArticleLinks(lang) {
+  const folder = articleFolders[lang] || articleFolders.ru;
+  document.querySelectorAll(".article-link[data-article]").forEach(link => {
+    link.href = `${folder}article${link.dataset.article}.html`;
+  });
+}
+
+function setLang(lang){
+  const dict = translations[lang] || translations.ru;
+  const fallback = translations.ru;
+
+  document.documentElement.lang = lang;
+
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const key = el.dataset.i18n;
+    const value = dict[key] !== undefined ? dict[key] : fallback[key];
+    if(value !== undefined) el.textContent = value;
+  });
+
+  document.querySelectorAll(".lang button").forEach(b => {
+    b.classList.toggle("active", b.dataset.lang === lang);
+  });
+
+  updateArticleLinks(lang);
+  localStorage.setItem("hurghadaLang", lang);
+}
+
+// Ожидаем полную загрузку DOM перед поиском кнопок и навешиванием событий
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".lang button").forEach(b => {
+    b.addEventListener("click", () => setLang(b.dataset.lang));
+  });
+
+  setLang(localStorage.getItem("hurghadaLang") || "ru");
+});
+</script>
+</body>
+</html>
