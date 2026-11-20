@@ -116,11 +116,11 @@
 
 <header class="site-header">
   <div class="container nav">
-    <a class="logo" href="../index.html">Hurghada <span>Property</span></a>
+    <a class="logo" href="../../index.html?lang=sr">Hurghada <span>Property</span></a>
     <nav class="nav-links">
-      <a href="../index.html#buy">Купи</a>
-      <a href="../index.html#rent">Изнајми</a>
-      <a href="../index.html#info">Корисне информације</a>
+      <a href="../../index.html?lang=sr#buy">Купи</a>
+      <a href="../../index.html?lang=sr#rent">Изнајми</a>
+      <a href="../../index.html?lang=sr#info">Корисне информације</a>
     </nav>
   </div>
 </header>
@@ -128,7 +128,7 @@
 <main>
   <div class="article-hero">
     <div class="container">
-      <a class="back-link" href="../index.html#info">← Све статье</a>
+      <a class="back-link" href="../../index.html?lang=sr#info">← Све статье</a>
       <h1>Комплетан водич кроз интернет у Хургади: мобилна мрежа, провајдери и кабловски интернет</h1>
       <div class="article-meta">
         <span>Корисне информације</span>
@@ -279,5 +279,16 @@
   </div>
 </footer>
 
+<script>
+  (function () {
+    var folder = (window.location.pathname.match(/\/(Ru|Eng|Sr)\//i) || [])[1];
+    var map = { ru: "ru", eng: "en", sr: "sr" };
+    if (folder) {
+      try {
+        localStorage.setItem("hurghadaLang", map[folder.toLowerCase()] || "ru");
+      } catch (e) { /* приватный режим — не страшно, сработает ?lang= в ссылках */ }
+    }
+  })();
+</script>
 </body>
 </html>

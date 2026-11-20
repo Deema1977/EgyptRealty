@@ -370,7 +370,33 @@ document.addEventListener("DOMContentLoaded", () => {
     b.addEventListener("click", () => setLang(b.dataset.lang));
   });
 
-  setLang(localStorage.getItem("hurghadaLang") || "ru");
+  function normalizeLang(v) {
+    if (!v) return null;
+    v = String(v).toLowerCase();
+    return (v === "ru" || v === "en" || v === "sr") ? v : null;
+  }
+
+  // /articles/Eng/... => "en";  /articles/Sr/... => "sr";  /articles/Ru/... => "ru"
+  function detectLangFromPath(url) {
+    if (!url) return null;
+    const m = url.match(/\/(Ru|Eng|Sr)\//i);
+    if (!m) return null;
+    const folder = m[1].toLowerCase();
+    if (folder === "ru") return "ru";
+    if (folder === "eng") return "en";
+    if (folder === "sr") return "sr";
+    return null;
+  }
+
+  const urlLang = new URLSearchParams(window.location.search).get("lang");
+
+  const initialLang =
+    normalizeLang(urlLang) ||                                 // 1) ?lang=...
+    detectLangFromPath(document.referrer) ||                  // 2) пришли со статьи
+    normalizeLang(localStorage.getItem("hurghadaLang")) ||    // 3) прошлый выбор
+    "ru";                                                     // 4) дефолт
+
+  setLang(initialLang);
 });
 </script>
 </body>

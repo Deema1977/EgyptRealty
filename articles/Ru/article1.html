@@ -116,11 +116,11 @@
 
 <header class="site-header">
   <div class="container nav">
-    <a class="logo" href="../index.html">Hurghada <span>Property</span></a>
+    <a class="logo" href="../../index.html?lang=ru">Hurghada <span>Property</span></a>
     <nav class="nav-links">
-      <a href="../index.html#buy">Покупка</a>
-      <a href="../index.html#rent">Аренда</a>
-      <a href="../index.html#info">Полезная информация</a>
+      <a href="../../index.html?lang=ru#buy">Покупка</a>
+      <a href="../../index.html?lang=ru#rent">Аренда</a>
+      <a href="../../index.html?lang=ru#info">Полезная информация</a>
     </nav>
   </div>
 </header>
@@ -128,7 +128,7 @@
 <main>
   <div class="article-hero">
     <div class="container">
-      <a class="back-link" href="../index.html#info">← Все статьи</a>
+      <a class="back-link" href="../../index.html?lang=ru#info">← Все статьи</a>
       <h1>Египет, каким его себе представляют, и Египет, в котором теперь живут</h1>
       <div class="article-meta">
         <span>Полезная информация</span>
@@ -223,5 +223,16 @@
   </div>
 </footer>
 
+<script>
+  (function () {
+    var folder = (window.location.pathname.match(/\/(Ru|Eng|Sr)\//i) || [])[1];
+    var map = { ru: "ru", eng: "en", sr: "sr" };
+    if (folder) {
+      try {
+        localStorage.setItem("hurghadaLang", map[folder.toLowerCase()] || "ru");
+      } catch (e) { /* приватный режим — не страшно, сработает ?lang= в ссылках */ }
+    }
+  })();
+</script>
 </body>
 </html>
